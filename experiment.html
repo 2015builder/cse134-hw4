@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Experiment Page</title>
+</head>
+<body>
+<h1>Experiment Page</h1>
+<nav>
+  <ul>
+    <li><a href="/cse134-hw2/CV.html">Back to main page</a>
+    </li>
+  </ul>
+</nav>
+
+<h3>The code tag</h3>
+<p>The most important code you need to know for every programming language: </p>
+<code>System.out.println("Hello World!")</code>
+
+<h3>The pre tag</h3>
+<p>How a dictionary can be initialized in python: </p>
+<pre>thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}</pre>
+
+<h3>The canvas tag</h3>
+<p>Drawing a simple rectangle using the <em>canvas</em> tag and JavaScript</p>
+<canvas id="canvas" width="200" height="200">
+</canvas>
+
+<script>
+  var canvas = document.getElementById("canvas");
+  var ctx = canvas.getContext("2d");
+  ctx.fillStyle = "#0040ff";
+  ctx.fillRect(20, 20, 150, 100);
+</script>
+
+<h3>The svg tag</h3>
+<p>Drawing a simpel rectangle using the <em>svg</em> tag and a rect element</p>
+<svg width="200" height="200">
+  <rect x="20" y="20" width="150" height="100" fill="blue"></rect>
+</svg>
+</body>
+</html>

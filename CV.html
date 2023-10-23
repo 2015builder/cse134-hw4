@@ -12,31 +12,32 @@
 
 </head>
 <body>
-<! still missing: script, style, div, span, em, code, pre, canvas
-svg, template>
+<! still missing:  div, template>
 
 <h1>CV and Portfolio</h1>
 
 <section>
 <h2>Navigation</h2>
 <nav>
+    <h3>To other pages</h3>
     <ul>
-        <li><a href="/summary">Summary</a></li>
-        <li><a href="/education">Education</a></li>
-        <li><a href="/work_experience">Working Experience</a></li>
-        <li><a href="/projects">Projects</a></li>
-        <li><a href="/about_munich.html">About Munich</a></li>
-        <li><a href="/contact_form.html">Contact Me</a></li>
-        <li><a href="/other_info">Other info</a></li>
+        <li><a href="/cse134-hw2/experiment.html">Experiment Page</a></li>
+        <li><a href="/cse134-hw2/about_munich.html">About Munich</a></li>
+        <li><a href="/cse134-hw2/contact_form.html">Contact Me</a></li>
     </ul>
+    <h3>On this page</h3>
+    <ol>
+        <li><a href="#summary">Summary</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#technical_skills">Technical Skills</a></li>
+        <li><a href="#work_experience">Work Experience</a></li>
+    </ol>
 </nav>
-
-    <! Sections of the page using ol />
 </section>
 
 <img src="colin-foto.de_148_jul21 mid.jpg" width = 30%, height = 40% alt="Picture of me">
 <hr>
-<section>
+<section id="summary">
     <h2>Summary</h2>
     <p>Hi and welcome to my webpage!<br>
     My name is Maximilian von Boxberg and I study <strong>Information
@@ -45,7 +46,7 @@ svg, template>
     in December I will start with my internship at Amazon back in Munich</p>
 </section>
 
-<section>
+<section id="education">
 <h2>Education</h2>
 <h3>University of California San Diego</h3>
 <p>Exchange semester (2023)</p>
@@ -69,9 +70,7 @@ svg, template>
 </section>
 
 
-
-<! tabular details about my technical skills />
-<section>
+<section id="technical_skills">
 
     <table>
         <caption><b>Technical Skills</b></caption>
@@ -80,7 +79,7 @@ svg, template>
             <th>Experience</th>
         </tr>
         <colgroup>
-            <col style="background-color: blue;">
+            <col style="background-color: rgba(0,0,255,0.68);">
             <col>
         </colgroup>
         <tr>
@@ -102,17 +101,78 @@ svg, template>
     </table>
 </section>
 
+<section id="work_experience">
+    <h2>Work Experience</h2>
+    <h3>Venture Capital Working Student at Reimann Investors</h3>
+    <details>
+        <summary>Details</summary>
+        <ul>
+            <li>Focus on B2B SaaS, fintech and digital commerce</li>
+            <li>Worked on deal sourcing, fund raising, market analysis and startup evaluations
+            </li>
+            <li>Built multiple web scrapers for the deal sourcing process with Python that are actively
+                used by the firm</li>
+        </ul>
+    </details>
 
-<! area to get in contact with me />
-<details>
-    <summary>Contact details</summary>
-    <ul>
-        <li>Email: example@boxberg.de</li>
-    </ul>
-</details>
+    <h3>Student Seminar, Software Developer, TUM & La Famiglia VC</h3>
+    <details>
+        <summary>Details</summary>
+        <ul>
+            <li>As part of a seminar I was part of a developer team of 15 students that build a deal
+                sourcing software for a VC firm from Berlin</li>
+            <li>I built much of the API handling and web scraping required for the backend in TypeScript
+                also using GraphQL (graded 1.0)
+            </li>
 
+        </ul>
+    </details>
 
+    <h3>Working Student IT at Boston Consulting Group (BCG)</h3>
+    <details>
+        <summary>Details</summary>
+        <ul>
+            <li>Responsible for all IT related work for the business@school team
+            </li>
+            <li>Performed data engineering and data analysis with SQL, VBA, and Microsoft Access
+            </li>
+            <li>Added a backup system for our database that would allow work to be only performed on a
+                separate testing database and not on the production version
+            </li>
+        </ul>
+    </details>
+    <h3>Co-Funder / Software Developer at GardenUP</h3>
+    <details>
+        <summary>Details</summary>
+        <ul>
+            <li>Together with friends we worked on an autonomous lawn mowing robot that would also
+                automatically remove weeds in personal gardens
+            </li>
+            <li>Responsible for team management and the developing of two neural networks that were
+                being trained on thousands of images of lawns to correctly identify different plant types
+            </li>
+            <li>Built a first prototype but the team separated for university studies
+            </li>
+        </ul>
+    </details>
 
+</section>
+
+<section>
+    <h2>Projects</h2>
+    <template id="project">
+        <div class="project content">
+            <h3 id="project-name">Project Name</h3>
+            <ul>
+                <li id="info1">Info1</li>
+                <li id="info2">Info2</li>
+                <li id="info3">Info3</li>
+            </ul>
+        </div>
+    </template>
+</section>
+
+<hr>
 </body>
 <footer>
     <i>by Maximilian von Boxberg, 2023</i>
