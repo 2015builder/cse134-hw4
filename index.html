@@ -30,32 +30,32 @@
 
         header {
             grid-area: header;
-            background-color: var(--dark-blue);
-            color: var(--white);
+            background-color: var(--dark-blue, #416788);
+            color: var(--white, #FFFFFF);
         }
 
         .left-sidebar {
             grid-area: left-sidebar;
-            background-color: var(--light-blue);
+            background-color: var(--light-blue, #7575c0);
             padding: 1em;
         }
 
         main {
             grid-area: main;
-            background-color: var(--white);
+            background-color: var(--white, #FFFFFF);
             padding: 1em;
         }
 
         .right-sidebar {
             grid-area: right-sidebar;
-            background-color: var(--light-blue);
+            background-color: var(--light-blue, #7575c0);
             padding: 1em;
         }
 
         footer {
             grid-area: footer;
-            background-color: var(--dark-blue);
-            color: var(--white);
+            background-color: var(--dark-blue, #416788);
+            color: var(--white, #FFFFFF);
             padding: 1em;
         }
         /*styling for the header bar */
@@ -76,7 +76,7 @@
         }
 
         .header-nav a {
-            color: var(--white);
+            color: var(--white, #FFFFFF);
             text-decoration: none;
             font-weight: bold;
             display: inline-block;
@@ -86,7 +86,7 @@
         .header-nav a:hover, .header-nav a:active, .header-nav a:focus {
             transform: scale(1.1);
             text-shadow: 2px 2px 4px #000;
-            color: var(--white);
+            color: var(--white, #FFFFFF);
         }
         /* for the hamburger nav */
         .hamburger-nav{
@@ -140,7 +140,7 @@
         }
         /* include the has() selector */
         li:hover:has(> a[href*="tum.de"]) {
-            text-shadow: 2px 2px 4px var(--tiffany-blue);
+            text-shadow: 2px 2px 4px var(--tiffany-blue, #81D2C7);
         }
         /* inlude scoped style */
         @scope (.header-site) {
@@ -151,7 +151,7 @@
 
             h1 {
                 font-size: 2.5em;
-                background: linear-gradient(to left, var(--white) ,var(--tiffany-blue), lightblue, var(--blue-gray), var(--light-blue)) 0 0/200% auto;
+                background: linear-gradient(to left, var(--white, #FFFFFF) ,var(--tiffany-blue, #81D2C7), lightblue, var(--blue-gray, #B5BAD0), var(--light-blue, #7575c0)) 0 0/200% auto;
                 -webkit-background-clip: text;
                 background-clip: text;
                 color: transparent;
@@ -171,11 +171,11 @@
         }
 
         a:hover {
-            color: var(--light-blue);
+            color: var(--light-blue, #7575c0);
         }
 
         li a {
-            color: var(--dark-blue);
+            color: var(--dark-blue, #416788);
         }
 
         /* remove this part*/
@@ -290,7 +290,7 @@
     </div>
     <div class="flex-items">
         <picture>
-            <source media="" srcset="portrait_large.jpg" title="A portrait of me">
+            <source media="(min-width: 1024px)" srcset="portrait_large.jpg" title="A portrait of me">
             <source media="(max-width: 1024px)" srcset="colin-foto.de_148_jul21_mid.jpg" title="A portrait of me">
             <source media="(max-width: 600px)" srcset="portrait_small.jpg" title="A portrait of me">
             <img src="portrait_small.jpg" alt="A portrait of me" loading="lazy" style="object-fit: cover; object-position: center; margin-left: auto; margin-right: auto;">
@@ -337,7 +337,7 @@
     <table>
         <caption><b>Technical Skills</b></caption>
         <colgroup>
-            <col style="background-color: var(--dark-blue)">
+            <col style="background-color: var(--dark-blue, #416788)">
             <col>
         </colgroup>
         <tr>
