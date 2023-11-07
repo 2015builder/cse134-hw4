@@ -4,8 +4,85 @@
     <meta charset="UTF-8">
     <title>About Munich</title>
     <style>
-        .highlight{
-            background-color: aqua;
+        .highlight {
+            font-style: italic;
+            color: lightslategrey;
+        }
+
+        .flex-container {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-items: stretch;
+            align-content: stretch;
+        }
+        .flex-items:nth-child(1),
+        .flex-items:nth-child(2),
+        .flex-items:nth-child(3),
+        .flex-items:nth-child(4){
+            display: block;
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: auto;
+            align-self: auto;
+            order: 0;
+
+            padding: 15px;
+            border-radius: 15px;
+        }
+        .flex-items:nth-child(1) { background-color: rgba(80, 161, 255, 0.20); }
+        .flex-items:nth-child(2) { background-color: rgba(80, 161, 255, 0.40); }
+        .flex-items:nth-child(3) { background-color: rgba(80, 161, 255, 0.60); }
+        .flex-items:nth-child(4) { background-color: rgba(80, 161, 255, 0.80);}
+
+        .flex-items iframe {
+            width: 100%;
+            border: none;
+        }
+
+
+        @font-face {
+            font-family: "Roboto Light";
+            src: url(roboto.ttf)
+        }
+
+        body {
+            font-family: 'Roboto Light', Arial, sans-serif;
+        }
+        a:hover {
+            color: #50a1ff;
+        }
+        li a {
+            color: rgb(0, 64, 255);
+            text-decoration: none;
+        }
+
+
+        @media (max-width: 1024px) {
+            h1, h2, h3, p, a, caption, th, td, li, summary,
+            i, footer, figcaption {
+                font-size: 80%;
+                overflow: hidden;
+                flex-direction: row;
+            }
+            iframe{
+                width: 80%;
+            }
+        }
+        @media (max-width: 600px) {
+            h1, h2, h3, p, a, caption, th, td, li, summary,
+            i, footer, figcaption {
+                font-size: 60%;
+                overflow: hidden;
+                flex-direction: row;
+            }
+            iframe{
+                width: 60%
+            }
+            .flex-container {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -22,29 +99,37 @@
     </nav>
 
 <h3>Where I study and live</h3>
-<p>Map of <span class="highlight">Munich: </span></p>
+    <div class="flex-container">
+        <div class="flex-items">
+            <p>Map of <span class="highlight">Munich: </span></p>
 
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2656.095145950452!2d11.667987700000003!3d48.2625435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479e72ed94cb83f3%3A0x6ec67872741a9e84!2sTUM%20School%20of%20Computation%2C%20Information%20and%20Technology%20(CIT)%2C%20Department%20Informatik%20und%20Mathematik!5e0!3m2!1sde!2sus!4v1697936987248!5m2!1sde!2sus" width="600" height="450" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2656.095145950452!2d11.667987700000003!3d48.2625435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479e72ed94cb83f3%3A0x6ec67872741a9e84!2sTUM%20School%20of%20Computation%2C%20Information%20and%20Technology%20(CIT)%2C%20Department%20Informatik%20und%20Mathematik!5e0!3m2!1sde!2sus!4v1697936987248!5m2!1sde!2sus" width="600" height="450" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="flex-items">
+            <p>Best view of <span class="highlight">Munich: </span></p>
+            <picture>
+                <source media="(min-width: 1200px)" srcset="munich-1200.jpg">
+                <source media="(min-width: 600px)" srcset="munich-600.jpg">
+                <img src="munich-600.jpg" alt="Munich and the alps">
+            </picture>
+        </div>
+        <div class="flex-items">
+            <p>The best song from <span class="highlight">Munich: </span></p>
 
-
-<p>Best view of <span class="highlight">Munich: </span></p>
-<picture>
-  <source media="(min-width: 1200px)" srcset="munich-1200.jpg">
-  <source media="(min-width: 600px)" srcset="munich-600.jpg">
-  <img src="munich-600.jpg" alt="Munich and the alps">
-</picture>
-<p>The best song from <span class="highlight">Munich: </span></p>
-
-<figure>
-    <audio src="bayrisch-drip.mp3" controls></audio>
-    <figcaption>This song enjoys high cultural status for young Germans today</figcaption>
-</figure>
-
-<p>A video showing the Eisbachwelle in <span class="highlight">Munich: </span></p>
-    <video width="320" height="240" controls>
-        <source src="./eisbachwelle.mp4" type="video/mp4">
-        Your browser seems to not support the video tag.
-    </video></section>
+            <figure>
+                <audio src="bayrisch-drip.mp3" controls></audio>
+                <figcaption>This song enjoys high cultural status for young Germans today</figcaption>
+            </figure>
+        </div>
+        <div class="flex-items">
+            <p>A video showing the Eisbachwelle in <span class="highlight">Munich: </span></p>
+            <video width="320" height="240" controls>
+                <source src="./eisbachwelle.mp4" type="video/mp4">
+                Your browser seems to not support the video tag.
+            </video>
+        </div>
+    </div>
+</section>
 
 </body>
 </html>

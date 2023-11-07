@@ -3,6 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <title>Contact Form</title>
+
+    <style>
+        button:hover {
+            background-color: #50a1ff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        fieldset {
+            border-radius: 15px;
+            border: 2px solid #50a1ff;
+        }
+
+
+        @font-face {
+            font-family: "Roboto Light";
+            src: url(roboto.ttf)
+        }
+
+        body {
+            font-family: 'Roboto Light', Arial, sans-serif;
+        }
+        a:hover {
+            color: #50a1ff;
+        }
+        li a {
+            color: rgb(0, 64, 255);
+            text-decoration: none;
+        }
+
+        @media (max-width: 1024px) {
+            h1, h2, h3, p, a, caption, th, td, li, summary, i, footer, button, label, legend, option, optgroup, select {
+                font-size: 80%;
+                overflow: hidden;
+                flex-direction: row;
+            }
+        }
+        @media (max-width: 600px) {
+            h1, h2, h3, p, a, caption, th, td, li, summary, i, footer, button, label, legend, option, optgroup, select  {
+                font-size: 60%;
+                overflow: hidden;
+                flex-direction: row;
+            }
+            .flex-container {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
 <h1>Get in contact with me</h1>
@@ -18,20 +64,22 @@
     <fieldset>
         <legend>Personal Information</legend>
         <label for="full_name">Full Name:</label>
-        <input type="text" id="full_name" name="full_name">
-
+        <input type="text" id="full_name" name="full_name" autofocus>
+        <br>
         <label for="email">Email:</label>
         <input type="text" id="email" name="email">
-
-        <select>
-            <optgroup id="about_you" label="About you">
-                <option value="recruiter">Recruiter</option>
-                <option value="student">Student</option>
-                <option value="university_staff">University staff</option>
-                <option value="other">Other</option>
-            </optgroup>
-        </select>
-
+        <br>
+        <label>
+            <select>
+                <optgroup id="about_you" label="About you">
+                    <option value="recruiter">Recruiter</option>
+                    <option value="student">Student</option>
+                    <option value="university_staff">University staff</option>
+                    <option value="other">Other</option>
+                </optgroup>
+            </select>
+        </label>
+        <br>
         <label for="interest">Choose an interest: </label>
         <input type="text" id="interest" name="interest" list="interests">
         <datalist id="interests">

@@ -10,31 +10,270 @@
     <title>Maximilian von Boxberg</title>
     <link rel="icon" href="fire-vector-icon.jpg" type="image/jpg">
 
+
+    <style>
+        @import url("general.css");
+        /* layout for the page */
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 3fr 1fr;
+            grid-template-rows: auto 1fr auto;
+            grid-template-areas:
+        "header header header"
+        "left-sidebar main right-sidebar"
+        "footer footer footer";
+            height: 100vh;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            grid-area: header;
+            background-color: var(--dark-blue);
+            color: var(--white);
+        }
+
+        .left-sidebar {
+            grid-area: left-sidebar;
+            background-color: var(--light-blue);
+            padding: 1em;
+        }
+
+        main {
+            grid-area: main;
+            background-color: var(--white);
+            padding: 1em;
+        }
+
+        .right-sidebar {
+            grid-area: right-sidebar;
+            background-color: var(--light-blue);
+            padding: 1em;
+        }
+
+        footer {
+            grid-area: footer;
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 1em;
+        }
+        /*styling for the header bar */
+        .header-site{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1em;
+        }
+
+        .header-nav li {
+            margin-left: 1em;
+        }
+
+        .header-nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .header-nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .header-nav a:hover, .header-nav a:active, .header-nav a:focus {
+            transform: scale(1.1);
+            text-shadow: 2px 2px 4px #000;
+            color: var(--white);
+        }
+        /* for the hamburger nav */
+        .hamburger-nav{
+            display: none;
+        }
+        .hamburger{
+            display: none;
+            cursor: pointer;
+        }
+        /* so that there is extra space between links */
+        main li + li{
+            margin-top: 10px;
+        }
+
+
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: flex-end;
+            align-items: stretch;
+            align-content: stretch;
+        }
+
+        .flex-items {
+            flex: 1;
+            margin: 0;
+        }
+
+        .flex-items picture {
+            margin-left: auto;
+            width: 100%;
+        }
+
+        .flex-items img {
+            max-width: min(100%, 50vw);
+            height: auto;
+            object-fit: contain;
+        }
+
+        html {
+             scroll-behavior: smooth;
+        }
+
+        details:hover {
+            transform: translateX(20px);
+            transition: transform 0.65s ease-in-out;
+        }
+
+
+        @font-face {
+            font-family: "Roboto Light";
+            src: url(roboto.ttf)
+        }
+
+        body {
+            font-family: 'Roboto Light', Arial, sans-serif;
+        }
+
+        a:hover {
+            color: var(--light-blue);
+        }
+
+        li a {
+            color: var(--dark-blue);
+        }
+
+        /* remove this part*/
+        .resume {
+            font-size: 16px;
+            display: flex;
+            flex-direction: row;
+        }
+        @media screen and (max-width: 1024px) {
+            .grid-container {
+                grid-template-columns: 0.5fr 3fr 0.5fr;
+            }
+            .left-sidebar, .right-sidebar {
+                padding: 0.5em;
+            }
+            h1, h2, h3, p, a, caption, th, td, li, summary, i, footer {
+                font-size: 95%;
+            }
+        }
+        @media screen and (max-width: 600px) {
+            /* for the header bar */
+            .header-site {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .header-nav ul {
+                flex-direction: column;
+            }
+
+            .header-nav li {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+            /* for the hamburger menu */
+            .hamburger {
+                display: block;
+            }
+            .header-nav ul{
+                height: 0;
+                overflow: hidden;
+                transition: height 0.3s ease;
+            }
+            .hamburger-nav:checked + .hamburger + .header-nav ul{
+                height: auto;
+            }
+            /* for the entire site layout */
+            .grid-container {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+            "header"
+            "main"
+            "footer";
+            }
+            header, main, footer {
+                padding: 0.5em;
+                margin: 0;
+            }
+            .right-sidebar, .left-sidebar{
+                display: none;
+            }
+
+            h1, h2, h3, p, a, caption, th, td, li, summary, i, footer  {
+                font-size: 90%;
+            }
+            .flex-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+
+
 </head>
 <body>
 
-<h1>CV and Portfolio</h1>
+<div class="grid-container">
 
-<section>
-<h2>Navigation</h2>
-<nav>
-    <h3>To other pages</h3>
-    <ul>
-        <li><a href="./experiment.html">Experiment Page</a></li>
-        <li><a href="./about_munich.html">About Munich</a></li>
-        <li><a href="./contact_form.html">Contact Me</a></li>
-    </ul>
-    <h3>On this page</h3>
-    <ol>
-        <li><a href="#summary">Summary</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#technical_skills">Technical Skills</a></li>
-        <li><a href="#work_experience">Work Experience</a></li>
-    </ol>
-</nav>
-</section>
+    <header class="header-site">
+        <h1 class="header-title">CV and Portfolio</h1>
+        <input type="checkbox" id="hamburger-nav" class="hamburger-nav">
+        <label for="hamburger-nav" class="hamburger">&#9776; Menu</label>
 
-<img src="colin-foto.de_148_jul21_mid.jpg" width = 200 height = 200 alt="Picture of me">
+        <nav class="header-nav">
+            <ul>
+                <li><a href="./experiment.html">Experiment Page</a></li>
+                <li><a href="./about_munich.html">About Munich</a></li>
+                <li><a href="./contact_form.html">Contact Me</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <aside class="left-sidebar"></aside>
+
+<main>
+
+<div class="flex-container">
+    <div class="flex-items">
+        <section>
+        <h2>Navigation</h2>
+        <nav>
+            <h3>On this page</h3>
+            <ul>
+                <li><a href="#summary">Summary</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#technical_skills">Technical Skills</a></li>
+                <li><a href="#work_experience">Work Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+            </ul>
+        </nav>
+
+        </section>
+    </div>
+    <div class="flex-items">
+        <picture>
+            <source media="" srcset="portrait_large.jpg" title="A portrait of me">
+            <source media="(max-width: 1024px)" srcset="colin-foto.de_148_jul21_mid.jpg" title="A portrait of me">
+            <source media="(max-width: 600px)" srcset="portrait_small.jpg" title="A portrait of me">
+            <img src="portrait_small.jpg" alt="A portrait of me" loading="lazy" style="object-fit: cover; object-position: center;">
+        </picture>
+    </div>
+</div>
+
 <hr>
 <section id="summary">
     <h2>Summary</h2>
@@ -74,7 +313,7 @@
     <table>
         <caption><b>Technical Skills</b></caption>
         <colgroup>
-            <col style="background-color: rgba(0,0,255,0.68);">
+            <col style="background-color: var(--dark-blue)">
             <col>
         </colgroup>
         <tr>
@@ -102,12 +341,29 @@
 
 <section id="work_experience">
     <h2>Work Experience</h2>
+
+    <h3>Product Management Intern at Amazon (starting 12/23)</h3>
+    <details>
+        <summary>Details</summary>
+        <ul>
+            <li>Part of the retail team based in Munich</li>
+        </ul>
+    </details>
+
+    <h3>Android Developer at Stealth Startup</h3>
+    <details>
+        <summary>Details</summary>
+        <ul>
+            <li>Developing the last time management app you will need</li>
+        </ul>
+    </details>
+
     <h3>Venture Capital Working Student at Reimann Investors</h3>
     <details>
         <summary>Details</summary>
         <ul>
             <li>Focus on B2B SaaS, fintech and digital commerce</li>
-            <li>Worked on deal sourcing, fund raising, market analysis and startup evaluations
+            <li>Worked on deal sourcing, fund-raising, market analysis and startup evaluations
             </li>
             <li>Built multiple web scrapers for the deal sourcing process with Python that are actively
                 used by the firm</li>
@@ -157,24 +413,36 @@
 
 </section>
 
-<section>
+<section id="projects">
     <h2>Projects</h2>
-    <template id="project">
-        <div class="project content">
-            <h3 id="project-name">Project Name</h3>
-            <ul>
-                <li id="info1">Info1</li>
-                <li id="info2">Info2</li>
-                <li id="info3">Info3</li>
-            </ul>
-        </div>
-    </template>
+    <h3>Classification model to detect online fraud, TUM & Siemens Advanta Consulting Project</h3>
+    <ul>
+        <li>Four weeks of creating this model as a team of four students as part of the Business Analytics and Machine Learning course (graded 1.0)</li>
+        <li>After pre-processing and data-cleaning we finalized a random forest model in R </li>
+    </ul>
+    <h3>Automated stock trading bot, HackaTUM 2022, TUM & Optiver</h3>
+    <ul>
+        <li>TUM’s hackathon where our team built a stock trading bot that became a finalist</li>
+    </ul>
+    <h3>Restaurant table booking application, Introduction to Software Architecture course, TUM</h3>
+    <ul>
+        <li>Built this application over the course of one semester with Java and REST</li>
+    </ul>
+
+
 </section>
 
-<hr>
+
+</main>
+
+    <aside class="right-sidebar"></aside>
+
 <footer>
     <i>by Maximilian von Boxberg, 2023</i>
 </footer>
+
+</div>
+
 </body>
 
 </html>

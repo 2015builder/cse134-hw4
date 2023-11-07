@@ -3,6 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <title>Experiment Page</title>
+
+    <style>
+        math:hover {
+            background-color: #50a1ff;
+            transition: background-color 0.5s ease-in-out;
+        }
+        pre {
+            background-color: #5b5858;
+            color: antiquewhite;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+            display: inline-block;
+        }
+
+
+        @font-face {
+            font-family: "Roboto Light";
+            src: url(roboto.ttf)
+        }
+
+        body {
+            font-family: 'Roboto Light', Arial, sans-serif;
+        }
+        a:hover {
+            color: #50a1ff;
+        }
+        li a {
+            color: rgb(0, 64, 255);
+            text-decoration: none;
+        }
+
+        @media (max-width: 1024px) {
+            h1, h2, h3, p, a, caption, th, td, li, summary, i, footer, math, code, pre {
+                font-size: 80%;
+                overflow: hidden;
+                flex-direction: row;
+            }
+        }
+        @media (max-width: 600px) {
+            h1, h2, h3, p, a, caption, th, td, li, summary, i, footer, math, code, pre  {
+                font-size: 60%;
+                overflow: hidden;
+                flex-direction: row;
+            }
+            .flex-container {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
 <h1>Experiment Page</h1>
