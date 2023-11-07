@@ -131,9 +131,33 @@
              scroll-behavior: smooth;
         }
 
-        details:hover {
+        details:is([open]) {
             transform: translateX(20px);
             transition: transform 0.65s ease-in-out;
+        }
+        details:not(:is([open])) {
+            transition: transform 0.65s ease-in-out;
+        }
+        /* include the has() selector */
+        li:hover:has(> a[href*="tum.de"]) {
+            text-shadow: 2px 2px 4px var(--tiffany-blue);
+        }
+        /* inlude scoped style */
+        @scope (.header-site) {
+            @keyframes rainbow-text-animation {
+                0%, 100% { background-position: 0 0; }
+                50% { background-position: 100% 0; }
+            }
+
+            h1 {
+                font-size: 2.5em;
+                background: linear-gradient(to left, var(--white) ,var(--tiffany-blue), lightblue, var(--blue-gray), var(--light-blue)) 0 0/200% auto;
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+                animation: rainbow-text-animation 7s linear infinite;
+                background-size: 200% auto;
+            }
         }
 
 
@@ -269,7 +293,7 @@
             <source media="" srcset="portrait_large.jpg" title="A portrait of me">
             <source media="(max-width: 1024px)" srcset="colin-foto.de_148_jul21_mid.jpg" title="A portrait of me">
             <source media="(max-width: 600px)" srcset="portrait_small.jpg" title="A portrait of me">
-            <img src="portrait_small.jpg" alt="A portrait of me" loading="lazy" style="object-fit: cover; object-position: center;">
+            <img src="portrait_small.jpg" alt="A portrait of me" loading="lazy" style="object-fit: cover; object-position: center; margin-left: auto; margin-right: auto;">
         </picture>
     </div>
 </div>
