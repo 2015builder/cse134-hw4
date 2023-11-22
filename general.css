@@ -5,3 +5,18 @@
     --tiffany-blue: #81D2C7;
     --white: hsl(180, 38%, 94%);
 }
+.dark{
+    --dark-blue: #000b1a;
+    --light-blue: #061b31;
+    --blue-gray: #5E6973;
+    --tiffany-blue: #156680;
+    --white: #92939a;
+}
+
+.light{
+    --dark-blue: #416788;
+    --light-blue: color-mix(in srgb, cadetblue, #7575c0 50%);
+    --blue-gray: #B5BAD0;
+    --tiffany-blue: #81D2C7;
+    --white: hsl(180, 38%, 94%);
+}

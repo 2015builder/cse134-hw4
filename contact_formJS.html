@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Form</title>
+
+  <style>
+    @import url("general.css");
+    button:hover {
+      background-color: var(--light-blue);
+      box-shadow: black;
+    }
+    /* this fieldset is not showing correctly !!*/
+    fieldset {
+      border-radius: 15px;
+      border: 2px solid var(--tiffany-blue);
+    }
+
+    /* layout for the page */
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr 3fr 1fr;
+      grid-template-rows: auto 1fr auto;
+      grid-template-areas:
+        "header header header"
+        "left-sidebar main right-sidebar"
+        "footer footer footer";
+      height: 100vh;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      grid-area: header;
+      background-color: var(--dark-blue, #416788);
+      color: var(--white, #FFFFFF);
+    }
+
+    .left-sidebar {
+      grid-area: left-sidebar;
+      background-color: var(--light-blue, #7575c0);
+      padding: 1em;
+    }
+
+    main {
+      grid-area: main;
+      background-color: var(--white, #FFFFFF);
+      padding: 1em;
+    }
+
+    .right-sidebar {
+      grid-area: right-sidebar;
+      background-color: var(--light-blue, #7575c0);
+      padding: 1em;
+    }
+
+    footer {
+      grid-area: footer;
+      background-color: var(--dark-blue, #416788);
+      color: var(--white, #FFFFFF);
+      padding: 1em;
+    }
+    /*styling for the header bar */
+    .header-site{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1em;
+    }
+
+    .header-nav li {
+      margin-left: 1em;
+    }
+
+    .header-nav ul {
+      list-style: none;
+      display: flex;
+    }
+
+    .header-nav a {
+      color: var(--white, #FFFFFF);
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    .header-nav a:hover, .header-nav a:active, .header-nav a:focus {
+      transform: scale(1.1);
+      text-shadow: 2px 2px 4px #000;
+      color: var(--white, #FFFFFF);
+    }
+    /* for the hamburger nav */
+    .hamburger-nav{
+      display: none;
+    }
+    .hamburger{
+      display: none;
+      cursor: pointer;
+    }
+
+    @scope (.header-site) {
+      @keyframes rainbow-text-animation {
+        0%, 100% { background-position: 0 0; }
+        50% { background-position: 100% 0; }
+      }
+
+      h1 {
+        font-size: 2.5em;
+        background: linear-gradient(to left, var(--white, #FFFFFF) ,var(--tiffany-blue, #81D2C7), lightblue, var(--blue-gray, #B5BAD0), var(--light-blue, #7575c0)) 0 0/200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: rainbow-text-animation 7s linear infinite;
+        background-size: 200% auto;
+      }
+    }
+
+    @font-face {
+      font-family: "Roboto Light";
+      src: url(roboto.ttf)
+    }
+
+    body {
+      font-family: 'Roboto Light', Arial, sans-serif;
+    }
+    a:hover {
+      color: var(--light-blue, #7575c0);
+    }
+    li a {
+      color: var(--dark-blue, #416788);
+      text-decoration: none;
+    }
+
+
+    @media screen and (max-width: 1024px) {
+      .grid-container {
+        grid-template-columns: 0.5fr 3fr 0.5fr;
+      }
+      .left-sidebar, .right-sidebar {
+        padding: 0.5em;
+      }
+      h1, h2, h3, p, a, caption, th, td, li, summary, i, footer, button, label, legend, option, optgroup, select  {
+        font-size: 95%;
+      }
+    }
+    @media screen and (max-width: 600px) {
+      /* for the header bar */
+      .header-site {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .header-nav ul {
+        flex-direction: column;
+      }
+
+      .header-nav li {
+        margin-left: 0;
+        margin-top: 10px;
+      }
+      /* for the hamburger menu */
+      .hamburger {
+        display: block;
+      }
+      .header-nav ul{
+        height: 0;
+        overflow: hidden;
+        transition: height 0.3s ease;
+      }
+      .hamburger-nav:checked + .hamburger + .header-nav ul{
+        height: auto;
+      }
+      /* for the entire site layout */
+      .grid-container {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "main"
+            "footer";
+      }
+      header, main, footer {
+        padding: 0.5em;
+        margin: 0;
+      }
+      .right-sidebar, .left-sidebar{
+        display: none;
+      }
+
+      h1, h2, h3, p, a, caption, th, td, li, summary, i, footer, button, label, legend, option, optgroup, select  {
+        font-size: 90%;
+      }
+      .flex-container {
+        flex-direction: column;
+      }
+    }
+
+    /* Add the CSS for the form content */
+    form {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      max-width: 500px;
+      margin: auto;
+      padding: 20px;
+    }
+    /*TODO check these */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      margin-bottom: 5px;
+    }
+    input[type="text"], input[type="email"], textarea {
+      padding: 8px;
+      border: 1px solid var(--tiffany-blue);
+      border-radius: 4px;
+      margin-bottom: 10px;
+      background-color: var(--white);
+    }
+    .feedback {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8em;
+      margin-bottom: 5px;
+    }
+    .error-message {
+      color: red;
+    }
+    .info-message{
+      color: green;
+    }
+    output:empty {
+      display: none; /* Keep hidden if empty */
+    }
+    button {
+      padding: 10px 20px;
+      background-color: var(--dark-blue);
+      color: var(--white, #FFFFFF);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    /* implement CSS validation */
+
+    input:required:invalid:not(:placeholder-shown),
+    textarea:required:invalid:not(:placeholder-shown) {
+      border: 2px solid red;
+      background-color: var(--white, #FFFFFF);
+    }
+    input:required:valid, textarea:required:valid{
+      border: 2px solid black;
+      background-color: var(--white, #FFFFFF);
+    }
+
+    input:required:invalid:not(:placeholder-shown) + .feedback .error-message {
+      display: block;
+    }
+
+    input:required:valid:not(:placeholder-shown) + .feedback .info-message {
+      display: block;
+    }
+
+    /* style the wrong character animation */
+    @keyframes flash {
+      0% { color: red; }
+      100% { color: transparent; }
+    }
+    .flash-error {
+      animation: flash 3.1s ease-out;
+    }
+    .error-message {
+      transition: opacity 3.1s ease-out;
+      opacity: 1;
+    }
+
+    /* style the character amount */
+    .warning {
+      color: orange;
+    }
+    .error {
+      color: red;
+    }
+
+  </style>
+  <script>
+    /* include the script to check the validity */
+    let form_errors = [];
+    function checkName() {
+      /* get the inputs and textareas */
+      const inputName = document.getElementById('full_name')
+      const nameInfo = document.getElementById('nameInfo')
+      const nameError = document.getElementById('nameError')
+      const regex = /^[A-Za-z '`´-]+$/;
+
+      /* if there is wrong character delete it and show it*/
+      if (inputName.value.length > 0 && !regex.test(inputName.value)) {
+        inputName.value = inputName.value.slice(0, -1);
+        /* remember what's in the error function before the wrong key */
+        let error_before = nameError.textContent
+        nameError.textContent = "Illegal character entered.";
+        nameError.classList.add('flash-error');
+        setTimeout(function () {
+          nameError.classList.remove('flash-error');
+          nameError.textContent = error_before;
+        }, 3000);
+        form_errors.push({
+          field: 'name',
+          error: 'Invalid character',
+          timestamp: new Date().toISOString()
+        });
+        return
+      }
+
+      if (!inputName.checkValidity()) {
+        if (inputName.validity.patternMismatch) {
+          inputName.setCustomValidity("Invalid name. Please use only letters.");
+          form_errors.push({
+            field: 'name',
+            error: 'Invalid',
+            timestamp: new Date().toISOString()
+          });
+        } else if (inputName.validity.valueMissing) {
+          inputName.setCustomValidity("Please enter your full name.");
+          form_errors.push({
+            field: 'name',
+            error: 'Value missing',
+            timestamp: new Date().toISOString()
+          });
+        } else if (inputName.validity.tooShort) {
+          inputName.setCustomValidity("Name is too short. Please enter at least 2 characters.");
+          form_errors.push({
+            field: 'name',
+            error: 'Too short',
+            timestamp: new Date().toISOString()
+          });
+        } else {
+          inputName.setCustomValidity("");
+        }
+        nameError.textContent = inputName.validationMessage;
+        nameInfo.textContent = '';
+      } else {
+        inputName.setCustomValidity("");
+        nameError.textContent = '';
+        nameInfo.textContent = 'Looks good!';
+      }
+    }
+
+    function checkEmail() {
+
+      const inputEmail = document.getElementById('email')
+      const emailInfo = document.getElementById('emailInfo')
+      const emailError = document.getElementById('emailError')
+      const regex = /^[A-Za-z0-9 @_.-]+$/;
+
+      /* if there is wrong character delete it and show it*/
+      if (inputEmail.value.length > 0 && !regex.test(inputEmail.value)) {
+        inputEmail.value = inputEmail.value.slice(0, -1);
+        /* remember what's in the error function before the wrong key */
+        let error_before = emailError.textContent
+        emailError.textContent = "Illegal character entered.";
+        emailError.classList.add('flash-error');
+        setTimeout(function () {
+          emailError.classList.remove('flash-error');
+          emailError.textContent = error_before;
+        }, 3000);
+        form_errors.push({
+          field: 'email',
+          error: 'Invalid character',
+          timestamp: new Date().toISOString()
+        });
+        return
+      }
+
+      if (!inputEmail.checkValidity()) {
+        if (inputEmail.validity.typeMismatch) {
+          inputEmail.setCustomValidity("Please enter a valid email address.");
+          form_errors.push({
+            field: 'email',
+            error: 'Invalid',
+            timestamp: new Date().toISOString()
+          });
+        } else if (inputEmail.validity.tooShort) {
+          inputEmail.setCustomValidity("Email is too short. Please enter at least 5 characters.");
+          form_errors.push({
+            field: 'email',
+            error: 'Too short',
+            timestamp: new Date().toISOString()
+          });
+        } else {
+          inputEmail.setCustomValidity("");
+        }
+        emailError.textContent = inputEmail.validationMessage;
+        emailInfo.textContent = '';
+      } else {
+        inputEmail.setCustomValidity("");
+        emailError.textContent = '';
+        emailInfo.textContent = 'Email looks good!';
+      }
+    }
+
+    function checkMessage(){
+      const inputMessage = document.getElementById('message')
+      const messageInfo = document.getElementById('messageInfo')
+      const messageError = document.getElementById('messageError')
+      const regex = /^[A-Za-z0-9 @_.!"§$%&/()=?*':;{}+#,^´`~-]+$/;
+
+      /* if there is wrong character delete it and show it*/
+      if (inputMessage.value.length > 0 && !regex.test(inputMessage.value)) {
+        inputMessage.value = inputMessage.value.slice(0, -1);
+        /* remember what's in the error function before the wrong key */
+        let error_before = messageError.textContent
+        messageError.textContent = "Illegal character entered.";
+        messageError.classList.add('flash-error');
+        setTimeout(function () {
+          messageError.classList.remove('flash-error');
+          messageError.textContent = error_before;
+        }, 3000);
+        form_errors.push({
+          field: 'message',
+          error: 'Invalid character',
+          timestamp: new Date().toISOString()
+        });
+        return
+      }
+
+      if (!inputMessage.checkValidity()) {
+        if (inputMessage.validity.valueMissing) {
+          inputMessage.setCustomValidity("Please enter a comment.");
+          form_errors.push({
+            field: 'message',
+            error: 'Value missing',
+            timestamp: new Date().toISOString()
+          });
+        } else if (inputMessage.validity.tooLong) {
+          inputMessage.setCustomValidity("Comment is too long. Maximum 280 characters allowed.");
+          form_errors.push({
+            field: 'message',
+            error: 'Too long',
+            timestamp: new Date().toISOString()
+          });
+        } else {
+          inputMessage.setCustomValidity("");
+        }
+        messageError.textContent = inputMessage.validationMessage;
+        messageInfo.textContent = '';
+      } else {
+        inputMessage.setCustomValidity("");
+        messageError.textContent = '';
+        messageInfo.textContent = '';
+      }
+
+      /* update the character count */
+      const remaining = 280 - inputMessage.value.length;
+      messageInfo.textContent = remaining + " characters remaining";
+      if (remaining <= 50 && remaining > 10) {
+        messageInfo.classList.add('warning');
+        messageInfo.classList.remove('error');
+      } else if (remaining <= 10) {
+        messageInfo.classList.add('error');
+        messageInfo.classList.remove('warning');
+      } else {
+        messageInfo.classList.remove('warning', 'error');
+      }
+    }
+
+    function toggleTheme(){
+      const body = document.body;
+      const themeToggleBtn = document.getElementById('theme-switch')
+      const theme = localStorage.getItem('theme')
+
+      /*if(body.classList.contains('light')){*/
+      if(theme === 'dark'){
+        body.classList.replace('dark', 'light');
+        themeToggleBtn.textContent = '🌞';
+        localStorage.setItem('theme', 'light')
+      }else{
+        body.classList.replace('light', 'dark');
+        themeToggleBtn.textContent = '🌜';
+        localStorage.setItem('theme', 'dark')
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const theme = localStorage.getItem('theme')
+      if(theme === 'dark'){
+        document.body.classList.add('light');
+        localStorage.setItem('theme', 'light');
+        toggleTheme()
+      }else{
+        document.body.classList.add('light');
+        localStorage.setItem('theme', 'light');
+      }
+    })
+
+    document.getElementById('myForm').addEventListener('submit', function(event) {
+      const errorData = JSON.stringify(form_errors);
+      document.getElementById('form-errors').value = errorData;
+      console.log("Submitting error data:", errorData);
+    });
+
+  </script>
+
+  <noscript>
+    <style>
+      .nojs {
+        display: none;
+      }
+    </style>
+  </noscript>
+</head>
+<body>
+
+<div class="grid-container">
+
+  <header class="header-site">
+    <h1 class="header-title">Get in contact with me</h1>
+    <input type="checkbox" id="hamburger-nav" class="hamburger-nav">
+    <label for="hamburger-nav" class="hamburger">&#9776; Menu</label>
+
+    <nav class="header-nav">
+      <ul>
+        <li><a href="./index.html">Back to main page</a></li>
+        <li class="nojs"><a id="theme-switch" class="nojs" onclick="toggleTheme()">🌞</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <aside class="left-sidebar"></aside>
+
+  <main>
+
+    <form id="myForm" action="https://httpbin.org/post" method="post">
+      <fieldset>
+        <legend><h2>Contact Form</h2></legend>
+
+        <section class="form-group">
+          <label for="full_name">Full Name:</label>
+          <input type="text" id="full_name" name="full_name"
+                 autofocus required maxlength="280" minlength="2"
+                 pattern="[A-Za-z '`´-]" placeholder="Enter your name"
+                  oninput="checkName()">
+          <div class="feedback">
+            <output id="nameError" class="error-message">
+            </output>
+            <output id="nameInfo" class="info-message">
+            </output>
+          </div>
+        </section>
+
+        <section class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required
+                 maxlength="280" minlength="5"
+                 placeholder="Enter your email"
+                  oninput="checkEmail()">
+          <div class="feedback">
+            <output id="emailError" class="error-message">
+            </output>
+            <output id="emailInfo" class="info-message">
+            </output>
+          </div>
+        </section>
+
+        <section class="form-group">
+          <label for="message">Comments: </label>
+          <textarea name="message" id="message" cols="30" rows="3"
+                    required maxlength="280" placeholder="Enter your comment"
+          oninput="checkMessage()"></textarea>
+          <div class="feedback">
+            <output id="messageError" class="error-message">
+
+            </output>
+            <output id="messageInfo" class="info-message">
+
+            </output>
+          </div>
+        </section>
+
+        <input type="hidden" name="possible_bot" value="true">
+        <input type="hidden" id="form-errors" name="form-errors" value="">
+
+        <button type="submit" class="submit">Submit</button>
+      </fieldset>
+    </form>
+
+  </main>
+
+  <aside class="right-sidebar"></aside>
+
+  <footer>
+    <i>by Maximilian von Boxberg, 2023</i>
+  </footer>
+
+</div>
+
+</body>
+</html>
