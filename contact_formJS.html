@@ -306,6 +306,9 @@
         setTimeout(function () {
           nameError.classList.remove('flash-error');
           nameError.textContent = error_before;
+          if(nameError.textContent === 'Illegal character entered.'){
+            nameError.textContent = ''
+          }
         }, 3000);
         form_errors.push({
           field: 'name',
@@ -339,6 +342,11 @@
           });
         } else {
           inputName.setCustomValidity("");
+          form_errors.push({
+            field: 'name',
+            error: 'Unknown error',
+            timestamp: new Date().toISOString()
+          });
         }
         nameError.textContent = inputName.validationMessage;
         nameInfo.textContent = '';
@@ -366,6 +374,9 @@
         setTimeout(function () {
           emailError.classList.remove('flash-error');
           emailError.textContent = error_before;
+          if(emailError.textContent === 'Illegal character entered.'){
+            emailError.textContent = ''
+          }
         }, 3000);
         form_errors.push({
           field: 'email',
@@ -392,6 +403,11 @@
           });
         } else {
           inputEmail.setCustomValidity("");
+          form_errors.push({
+            field: 'email',
+            error: 'Unknown error',
+            timestamp: new Date().toISOString()
+          });
         }
         emailError.textContent = inputEmail.validationMessage;
         emailInfo.textContent = '';
@@ -418,6 +434,9 @@
         setTimeout(function () {
           messageError.classList.remove('flash-error');
           messageError.textContent = error_before;
+          if(messageError.textContent === "Illegal character entered."){
+            messageError.textContent = ''
+          }
         }, 3000);
         form_errors.push({
           field: 'message',
@@ -444,6 +463,11 @@
           });
         } else {
           inputMessage.setCustomValidity("");
+          form_errors.push({
+            field: 'message',
+            error: 'Unknown error',
+            timestamp: new Date().toISOString()
+          });
         }
         messageError.textContent = inputMessage.validationMessage;
         messageInfo.textContent = '';
@@ -496,11 +520,11 @@
       }
     })
 
-    document.getElementById('myForm').addEventListener('submit', function(event) {
+    function submitForm(){
       const errorData = JSON.stringify(form_errors);
       document.getElementById('form-errors').value = errorData;
       console.log("Submitting error data:", errorData);
-    });
+    }
 
   </script>
 
@@ -583,7 +607,7 @@
         <input type="hidden" name="possible_bot" value="true">
         <input type="hidden" id="form-errors" name="form-errors" value="">
 
-        <button type="submit" class="submit">Submit</button>
+        <button type="submit" class="submit" onclick="submitForm()">Submit</button>
       </fieldset>
     </form>
 
